@@ -1,0 +1,38 @@
+[
+    {
+        "categoryId": 1,
+        "categoryTitle": "Disaster"
+    },
+    {
+        "categoryId": 2,
+        "categoryTitle": "Children"
+    },
+    {
+        "categoryId": 3,
+        "categoryTitle": "Food Crisis"
+    },
+    {
+        "categoryId": 4,
+        "categoryTitle": "Health"
+    },
+    {
+        "categoryId": 5,
+        "categoryTitle": "Education"
+    },
+    {
+        "categoryId": 6,
+        "categoryTitle": "Homeless"
+    },
+    {
+        "categoryId": 7,
+        "categoryTitle": "Animal"
+    },
+    {
+        "categoryId": 8,
+        "categoryTitle": "Pandemic"
+    },
+    {
+        "categoryId": 9,
+        "categoryTitle": "War Crisis"
+    }
+]
