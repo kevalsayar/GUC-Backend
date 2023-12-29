@@ -16,7 +16,7 @@ router
     [
       authMiddleware(ConstantMembers.USER_ROLE.ADMIN).roleAuth,
       reqMiddleware.validateQueryParam(projectSchemas.moduleNameSchema),
-      reqMiddleware.validateFile(),
+      // reqMiddleware.validateFile(),
       reqMiddleware.validateReqBody(projectSchemas.addProjectSchema),
     ],
     asyncHandler(ProjectHandler.addProjects)

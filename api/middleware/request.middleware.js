@@ -1,7 +1,7 @@
 const { HelperFunction } = require("../common/helper"),
   { ConstantMembers } = require("../common/members"),
   { FILE_SIZE, IMAGE_UPLOAD } = require("../config/env"),
-  { upload } = require("../config/multer.config"),
+  // { upload } = require("../config/multer.config"),
   asyncHandler = require("express-async-handler"),
   { ApiError } = require("../utils/ApiError");
 
@@ -68,54 +68,54 @@ const requestMiddleware = function () {
   const validatePathParam = (pathParamSchema) => (req, res, next) =>
     validate(pathParamSchema, req.params, req, res, next);
 
-  /**
-   * @description Middleware function for validating uploaded files.
-   *
-   * This middleware uses the 'multer' library to handle file uploads and validates the uploaded files based on specified criteria.
-   * It checks for file size and ensures that the uploaded files exist.
-   *
-   * @returns {Function} - Express middleware function that performs file validation.
-   */
-  const validateFile = () => async (req, res, next) => {
-    upload(req, res, async function (err) {
-      if (err) {
-        throw new ApiError(ConstantMembers.STATUS_CODE.BAD_REQUEST, err);
-      }
+  // /**
+  //  * @description Middleware function for validating uploaded files.
+  //  *
+  //  * This middleware uses the 'multer' library to handle file uploads and validates the uploaded files based on specified criteria.
+  //  * It checks for file size and ensures that the uploaded files exist.
+  //  *
+  //  * @returns {Function} - Express middleware function that performs file validation.
+  //  */
+  // const validateFile = () => async (req, res, next) => {
+  //   upload(req, res, async function (err) {
+  //     if (err) {
+  //       throw new ApiError(ConstantMembers.STATUS_CODE.BAD_REQUEST, err);
+  //     }
 
-      if (!req.files) {
-        throw new ApiError(
-          ConstantMembers.STATUS_CODE.BAD_REQUEST,
-          ConstantMembers.Messages.image["no-input-image"]
-        );
-      }
+  //     if (!req.files) {
+  //       throw new ApiError(
+  //         ConstantMembers.STATUS_CODE.BAD_REQUEST,
+  //         ConstantMembers.Messages.image["no-input-image"]
+  //       );
+  //     }
 
-      const fileKeys = Object.keys(req.files);
-      fileKeys.forEach((fileKey) =>
-        req.files[fileKey].forEach((ele) => {
-          if (ele.size > FILE_SIZE) {
-            throw new ApiError(
-              ConstantMembers.STATUS_CODE.PAYLOAD_TOO_LARGE,
-              ConstantMembers.Messages.image["image-size-exceeded"]
-            );
-          }
+  //     const fileKeys = Object.keys(req.files);
+  //     fileKeys.forEach((fileKey) =>
+  //       req.files[fileKey].forEach((ele) => {
+  //         if (ele.size > FILE_SIZE) {
+  //           throw new ApiError(
+  //             ConstantMembers.STATUS_CODE.PAYLOAD_TOO_LARGE,
+  //             ConstantMembers.Messages.image["image-size-exceeded"]
+  //           );
+  //         }
 
-          req.body[fileKey] =
-            HelperFunction.host(req) +
-            `${IMAGE_UPLOAD}/` +
-            `${req.query.moduleName}/` +
-            ele.filename;
-        })
-      );
+  //         req.body[fileKey] =
+  //           HelperFunction.host(req) +
+  //           `${IMAGE_UPLOAD}/` +
+  //           `${req.query.moduleName}/` +
+  //           ele.filename;
+  //       })
+  //     );
 
-      next();
-    });
-  };
+  //     next();
+  //   });
+  // };
 
   return {
     validateReqBody,
     validateQueryParam,
     validatePathParam,
-    validateFile,
+    // validateFile,
   };
 };
 
